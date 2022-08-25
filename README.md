@@ -1,4 +1,4 @@
-# Raven B+
+# Raven B++
 Raven b++ is built on top of Raven b+, adding quality of life improvements, bug fixes, and much more.<br>
 Discord:
 <br><a href="https://discord.gg/UqJ8ngteud"></a><br>
