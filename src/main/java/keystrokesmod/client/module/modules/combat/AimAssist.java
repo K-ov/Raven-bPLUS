@@ -33,6 +33,9 @@ public class AimAssist extends Module {
     public static TickSetting breakBlocks;
     public static TickSetting blatantMode;
     public static TickSetting ignoreFriends;
+
+    public static TickSetting ignoreNaked;
+
     public static ArrayList<Entity> friends = new ArrayList<>();
 
     public AimAssist() {
@@ -45,6 +48,7 @@ public class AimAssist extends Module {
         this.registerSetting(clickAim = new TickSetting("Click aim", true));
         this.registerSetting(breakBlocks = new TickSetting("Break blocks", true));
         this.registerSetting(ignoreFriends = new TickSetting("Ignore Friends", true));
+        this.registerSetting(ignoreNaked = new TickSetting("Ignore naked", false));
         this.registerSetting(weaponOnly = new TickSetting("Weapon only", false));
         this.registerSetting(aimInvis = new TickSetting("Aim invis", false));
         this.registerSetting(blatantMode = new TickSetting("Blatant mode", false));
@@ -136,14 +140,16 @@ public class AimAssist extends Module {
                         do {
                             do {
                                 do {
-                                    if (!var2.hasNext()) {
-                                        return null;
-                                    }
+                                    do {
+                                        if (!var2.hasNext()) {
+                                            return null;
+                                        }
 
-                                    en = var2.next();
-                                } while (ignoreFriends.isToggled() && isAFriend(en));
-                            } while (en == mc.thePlayer);
-                        } while (en.isDead);
+                                        en = var2.next();
+                                    } while (ignoreFriends.isToggled() && isAFriend(en));
+                                } while (en == mc.thePlayer);
+                            } while (en.isDead);
+                        } while (ignoreNaked.isToggled() && en.getCurrentArmor(3) == null && en.getCurrentArmor(2) == null && en.getCurrentArmor(1) == null && en.getCurrentArmor(0) == null);
                     } while (!aimInvis.isToggled() && en.isInvisible());
                 } while ((double) mc.thePlayer.getDistanceToEntity(en) > distance.getInput());
             } while (AntiBot.bot(en));
