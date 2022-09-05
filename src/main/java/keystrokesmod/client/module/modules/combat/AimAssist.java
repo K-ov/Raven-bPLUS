@@ -150,10 +150,10 @@ public class AimAssist extends Module {
                                 } while (en == mc.thePlayer);
                             } while (en.isDead);
                         } while (ignoreNaked.isToggled() && en.getCurrentArmor(3) == null && en.getCurrentArmor(2) == null && en.getCurrentArmor(1) == null && en.getCurrentArmor(0) == null);
-                        } while (!aimInvis.isToggled() && en.isInvisible());
-                    } while ((double) mc.thePlayer.getDistanceToEntity(en) > distance.getInput());
-                } while (AntiBot.bot(en));
-            } while (!blatantMode.isToggled() && !Utils.Player.fov(en, (float) fov));
+                    } while (!aimInvis.isToggled() && en.isInvisible());
+                } while ((double) mc.thePlayer.getDistanceToEntity(en) > distance.getInput());
+            } while (AntiBot.bot(en));
+        } while (!blatantMode.isToggled() && !Utils.Player.fov(en, (float) fov));
 
         return en;
     }
