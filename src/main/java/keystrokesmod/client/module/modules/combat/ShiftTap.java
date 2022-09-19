@@ -43,8 +43,8 @@ public class ShiftTap extends Module {
         this.registerSetting(eventType = new ComboSetting("Event", WTap.EventType.Attack));
         this.registerSetting(onlyPlayers = new TickSetting("Only combo players", true));
         this.registerSetting(onlySword = new TickSetting("Only sword", false));
-        this.registerSetting(waitMs = new DoubleSliderSetting("Release w for ... ms", 30, 40, 1, 300, 1));
-        this.registerSetting(actionMs = new DoubleSliderSetting("WTap after ... ms", 20, 30, 1, 300, 1));
+        this.registerSetting(waitMs = new DoubleSliderSetting("Release shift for ... ms", 30, 40, 1, 300, 1));
+        this.registerSetting(actionMs = new DoubleSliderSetting("Shift after ... ms", 20, 30, 1, 300, 1));
         this.registerSetting(hitPer = new DoubleSliderSetting("Once every ... hits", 1, 1, 1, 10, 1));
         this.registerSetting(chance = new SliderSetting("Chance %", 100, 0, 100, 1));
         this.registerSetting(range = new SliderSetting("Range: ", 3, 1, 6, 0.05));
