@@ -22,7 +22,6 @@ import static keystrokesmod.client.utils.Utils.Java.round;
 
 public class BedwarsOverlay extends Module {
     public static SliderSetting overlayX, overlayY, margin, marginTextY, marginTextX;
-    public static DescriptionSetting bombiesMomento;
     public static boolean active, reset;
     public static double overlayWidth, overlayHeight, textY;
     public static int mainTextColour, backgroundColour, linesDrawn, errorColour;
@@ -32,7 +31,6 @@ public class BedwarsOverlay extends Module {
     public BedwarsOverlay() {
 
         super("Bedwars Overlay", ModuleCategory.minigames);
-        this.registerSetting(bombiesMomento = new DescriptionSetting("B0MBIES moment"));
         overlayHeight = 170;
         overlayWidth = 300;
         this.registerSetting(overlayX = new SliderSetting("X", 4, 0, mc.displayWidth, 1));
