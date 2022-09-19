@@ -18,7 +18,7 @@ public class Pearl extends Module {
         super("Pearl", ModuleCategory.hotkey);
 
         this.registerSetting(preferSlot = new TickSetting("Prefer a slot", false));
-        this.registerSetting(hotbarSlotPreference = new SliderSetting("Prefer wich slot", 6, 1, 9, 1));
+        this.registerSetting(hotbarSlotPreference = new SliderSetting("Prefer slot", 6, 1, 9, 1));
     }
 
     public static boolean checkSlot(int slot) {
