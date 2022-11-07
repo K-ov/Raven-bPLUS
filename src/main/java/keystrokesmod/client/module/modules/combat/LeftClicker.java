@@ -5,6 +5,8 @@ import java.lang.reflect.Method;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
+import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
@@ -47,6 +49,7 @@ public class LeftClicker extends Module {
     private long leftHold;
     public static boolean autoClickerEnabled;
     private boolean leftDown;
+    private boolean previouslyBrokeBlock;
     private long leftDownTime;
     private long leftUpTime;
     private long leftk;
@@ -88,6 +91,7 @@ public class LeftClicker extends Module {
         autoClickerEnabled = false;
     }
 
+    //note this is on MODULE enable
     @Override
     public void onEnable() {
         if (this.playerMouseInput == null)
@@ -96,6 +100,7 @@ public class LeftClicker extends Module {
         boolean allowedClick = false;
         this.rand = new Random();
         autoClickerEnabled = true;
+        previouslyBrokeBlock = false;
     }
 
     @Override
@@ -138,7 +143,20 @@ public class LeftClicker extends Module {
 				hitSelected = true;
 			else
 				return true;
+
+       if (previouslyBrokeBlock) {
+           if (!Mouse.isButtonDown(0)) {
+               previouslyBrokeBlock = false;
+           }
+           return true;
+       }
         return false;
+    }
+    @Subscribe
+    public void blockBreakEvent(ForgeEvent e){
+        if (e.getEvent() instanceof BlockEvent.BreakEvent) {
+            previouslyBrokeBlock = true;
+        }
     }
 
     @Subscribe
@@ -243,8 +261,9 @@ public class LeftClicker extends Module {
 
     public void leftClickExecute(int key) {
 
-        if (breakBlock())
+        if (breakBlock()) {
             return;
+        }
 
         if (jitterLeft.getInput() > 0.0D) {
             double a = jitterLeft.getInput() * 0.45D;
@@ -342,10 +361,12 @@ public class LeftClicker extends Module {
                     }
                     return true;
                 }
-                if (breakHeld)
-					breakHeld = false;
+                if (breakHeld) {
+                    breakHeld = false;
+                }
             }
         }
+
         return false;
     }
 

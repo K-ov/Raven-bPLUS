@@ -18,6 +18,7 @@ import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
+import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
@@ -114,5 +115,7 @@ public class ForgeEventListener {
     public void onDrawBlockHighlight(DrawBlockHighlightEvent e) {
         Raven.eventBus.post(new ForgeEvent(e));
     }
+    @SubscribeEvent
+    public void blockBreakEvent(BlockEvent.BreakEvent e){Raven.eventBus.post(new ForgeEvent(e));}
 
 }
