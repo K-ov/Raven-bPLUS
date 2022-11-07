@@ -151,7 +151,10 @@ public class LeftClicker extends Module {
     @Subscribe
     public void blockBreakEvent(ForgeEvent e){
         if (e.getEvent() instanceof BlockEvent.BreakEvent) {
-            previouslyBrokeBlock = true;
+            BlockEvent.BreakEvent breakEvent = (BlockEvent.BreakEvent) e.getEvent();
+            if (breakEvent.state.getBlock().isFullBlock()) {
+                previouslyBrokeBlock = true;
+            }
         }
     }
 
