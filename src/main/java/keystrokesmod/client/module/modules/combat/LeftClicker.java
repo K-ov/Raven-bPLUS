@@ -135,8 +135,10 @@ public class LeftClicker extends Module {
     }
 
     private boolean shouldNotClick() {
-        if (!Mouse.isButtonDown(0))
-			hitSelected = false;
+        if (!Mouse.isButtonDown(0)) {
+            hitSelected = false;
+            previouslyBrokeBlock = false;
+        }
 
         if (hitSelect.isToggled())
 			if (hitSelected || ((mc.thePlayer.hurtTime != 0) && (mc.thePlayer.hurtTime > hitSelectTick.getInput())))
@@ -144,12 +146,6 @@ public class LeftClicker extends Module {
 			else
 				return true;
 
-       if (previouslyBrokeBlock) {
-           if (!Mouse.isButtonDown(0)) {
-               previouslyBrokeBlock = false;
-           }
-           return true;
-       }
         return false;
     }
     @Subscribe
@@ -365,6 +361,10 @@ public class LeftClicker extends Module {
                     breakHeld = false;
                 }
             }
+        }
+
+        if (previouslyBrokeBlock) {
+            return true;
         }
 
         return false;
